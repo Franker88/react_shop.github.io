@@ -1,0 +1,53 @@
+@use "_vars";
+
+body {
+  margin: 0;
+  font-family: "Quicksand", sans-serif;
+}
+
+.divnf {
+  display: grid;
+  height: 100vh;
+  width: 100%;
+  place-items: center;
+  animation-name: div-nf-rotation;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+}
+
+.notfound {
+  font-size: var(--title);
+  animation-name: notfoundword;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes notfoundword {
+  0% {
+    transform: scale(2);
+  }
+  25% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(2);
+  }
+  75% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(2);
+  }
+}
+
+@keyframes div-nf-rotation {
+  0% {
+    transform: rotate(45deg);
+  }
+  50% {
+    transform: rotate(-45deg);
+  }
+  100% {
+    transform: rotate(45deg);
+  }
+}
