@@ -7,10 +7,21 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
+    publicPath: "/",
   },
   mode: "development",
   resolve: {
     extensions: [".js", ".jsx"],
+    alias: {
+      "@components": path.resolve(__dirname, "src/components/"),
+      "@context": path.resolve(__dirname, "src/context/"),
+      "@pages": path.resolve(__dirname, "src/pages/"),
+      "@containers": path.resolve(__dirname, "src/containers/"),
+      "@styles": path.resolve(__dirname, "src/styles/"),
+      "@icons": path.resolve(__dirname, "src/icons/"),
+      "@logos": path.resolve(__dirname, "src/logos/"),
+      "@hooks": path.resolve(__dirname, "src/hooks/"),
+    },
   },
   module: {
     rules: [
@@ -26,8 +37,19 @@ module.exports = {
         use: [{ loader: "html-loader" }],
       },
       {
-        test: /\.s[ac]ss$/,
+        test: /\.(css|scss)$/,
         use: ["style-loader", "css-loader", "sass-loader"],
+      },
+      {
+        test: /\.(png|jp(e*)g|svg|gif)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "images/[hash]-[name].[ext]",
+            },
+          },
+        ],
       },
     ],
   },
@@ -40,4 +62,7 @@ module.exports = {
       filename: "[name].css",
     }),
   ],
+  devServer: {
+    historyApiFallback: true,
+  },
 };
